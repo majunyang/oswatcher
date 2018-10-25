@@ -52,6 +52,7 @@ class Inode(GraphObject):
         self.size = file_stat['st_size']
         self.mode = stat.filemode(file_stat['st_mode'])
         self.inode_type = InodeType(stat.S_IFMT(file_stat['st_mode'])).value
+        self.file_type = guestfs.file(s_filepath)
 
 
     # properties
@@ -62,6 +63,7 @@ class Inode(GraphObject):
     sha256sum = Property()
     sha512sum = Property()
     inode_type = Property()
+    file_type = Property()
 
 
     # relationships
